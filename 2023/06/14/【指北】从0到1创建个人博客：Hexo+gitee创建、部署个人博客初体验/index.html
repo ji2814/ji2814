@@ -17,7 +17,7 @@
 
 
 
-<title>【指北】从0到1创建个人博客：Hexo+gitee创建、部署个人博客初体验 | 1bit</title>
+<title>【指北】从0到1创建个人博客：Hexo+github创建、部署个人博客初体验 | 1bit</title>
 
 
 
@@ -133,16 +133,125 @@
 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a>
+        <a onclick="go_top()">返回顶部</a>
+        <!-- <a onclick="go_bottom()">Go to bottom</a> -->
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
 
     
     <!-- 解析markdown文件 -->
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">【指北】从0到1创建个人博客：Hexo+gitee创建、部署个人博客初体验</h1>
+            <h1 class="post-title">【指北】从0到1创建个人博客：Hexo+github创建、部署个人博客初体验</h1>
             
         </header>
         <div class="post-content">
-            
+            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>从0开始安装node.js，利用npm安装hexo框架，配置使用默认主题，并发布到GitHub page上便于访问</p>
+<hr>
+<span id="more"></span>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="安装node-js与git"><a href="#安装node-js与git" class="headerlink" title="安装node.js与git"></a>安装node.js与git</h3><blockquote>
+<p>node.js为JavaScript提供运行环境</p>
+<p>git将本地生成的静态网站部署到GitHub上，使用命令行来交互</p>
+</blockquote>
+<p>进入<a target="_blank" rel="noopener" href="https://nodejs.org/en">node.js下载页</a>下载LTS版一路next即可安装成功</p>
+<p>进入<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">git下载页</a>下载对应版本的git软件</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><blockquote>
+<p>node.js自带npm包管理工具，我们就是通过npm来安装hexo框架</p>
+</blockquote>
+<p>使用git执行以下命令就可安装好hexo框架</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="在本地建立网站"><a href="#在本地建立网站" class="headerlink" title="在本地建立网站"></a>在本地建立网站</h3><p>安装完成后就可以先在本地建立网站，后再去部署到GitHub上</p>
+<p>执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt; <span class="comment">#folder为网站文件夹名称，以下以MyBlog代替</span></span><br><span class="line"><span class="built_in">cd</span> MyBlog <span class="comment">#进入网站文件夹</span></span><br><span class="line">npm install <span class="comment">#利用npm安装依赖包</span></span><br></pre></td></tr></table></figure>
+
+<p>完成后在MyBlog文件夹中会建立若干文件夹，文件目录如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MyBlog</span><br><span class="line">├── _config.yml #网站配置文件</span><br><span class="line">├── package.json #应用程序信息</span><br><span class="line">├── scaffolds #模板文件夹</span><br><span class="line">├── source #网站用户资源文件夹</span><br><span class="line">|   ├── _drafts #存放草稿</span><br><span class="line">|   └── _posts #博客文章存放在这儿</span><br><span class="line">└── themes #主题文件夹</span><br></pre></td></tr></table></figure>
+
+<p>随便写一篇博客，执行命令行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="comment">#清楚缓存，每次换主题建议执行一次</span></span><br><span class="line">hexo g <span class="comment">#生成静态网站</span></span><br><span class="line">hexo s <span class="comment">#打开本地端口</span></span><br></pre></td></tr></table></figure>
+
+<p>后在浏览器中输入<code>http://localhost:4000/</code>即可预览</p>
+<h3 id="部署到GitHub-page（需科学上网）"><a href="#部署到GitHub-page（需科学上网）" class="headerlink" title="部署到GitHub page（需科学上网）"></a>部署到GitHub page（需科学上网）</h3><ul>
+<li>申请GitHub账号</li>
+<li>创建与用户名相同的仓库</li>
+<li>用git与建立SSH连接</li>
+</ul>
+<p>在配置文件中找到<code>deplot</code>项配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span> </span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:ji2814/ji2814.git</span> <span class="comment">#自己的github仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span> <span class="comment">#注意是main而不是master</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在git中执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>即可完成</p>
+<h2 id="致谢-amp-参考"><a href="#致谢-amp-参考" class="headerlink" title="致谢&amp;参考"></a>致谢&amp;参考</h2><p>npm版本：9.5.1</p>
+<p>hexo -cli版本：4.3.1</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/552639819">大佬的知乎</a></p>
+
         </div>
         
         <section class="post-tags">
