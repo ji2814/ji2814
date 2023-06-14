@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="jidw">
+
+
+    <meta name="subtitle" content="归去来兮，田园将芜胡不归？">
+
+
+    <meta name="description" content="我的个人博客">
+
+
+
+<title>【指北】从0到1创建个人博客：Hexo+gitee创建、部署个人博客初体验 | 1bit</title>
+
+
+
+    <link rel="icon" href="/ji2814/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/ji2814/css/style.css">
+    
+    <link rel="stylesheet" href="http://at.alicdn.com/t/c/font_4119706_qsocqn9oudm.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/ji2814/js/script.js"></script>
+    
+    <script src="/ji2814/js/tocbot.min.js"></script>
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/ji2814/">首页</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/ji2814/archives"><i class="iconfont icon-archives"></i>archives</a>
+                
+                    <a class="menu-item" href="/ji2814/category"><i class="iconfont icon-categories"></i>categories</a>
+                
+                    <a class="menu-item" href="/ji2814/tag"><i class="iconfont icon-tags"></i>tags</a>
+                
+                    <a class="menu-item" href="/ji2814/about"><i class="iconfont icon-about"></i>about</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/ji2814/">首页</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/ji2814/archives">archives</a>
+                
+                    <a class="menu-item" href="/ji2814/category">categories</a>
+                
+                    <a class="menu-item" href="/ji2814/tag">tags</a>
+                
+                    <a class="menu-item" href="/ji2814/about">about</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+            <div class="main">
+                <!-- 阅读页 -->
+
+<div class="container">
+    
+    
+
+    
+    <!-- 解析markdown文件 -->
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">【指北】从0到1创建个人博客：Hexo+gitee创建、部署个人博客初体验</h1>
+            
+        </header>
+        <div class="post-content">
+            
+        </div>
+        
+        <section class="post-tags">
+            <div>
+                <span>标签:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/ji2814/tags/%E5%89%8D%E7%AB%AF/">🏷️ 前端</a>
+                    
+                        <a href="/ji2814/tags/hexo/">🏷️ hexo</a>
+                    
+                        <a href="/ji2814/tags/blog/">🏷️ blog</a>
+                    
+                        
+                </span>
+            </div>
+            <!-- <div>
+                <a href="javascript:window.history.back();">返回</a>
+                <span>· </span>
+                <a href="/ji2814/">首页</a>
+            </div> -->
+        </section>
+        <!-- prev&next -->
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/ji2814/2018/07/24/markdown/">Markdown Style test</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            
+<footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© jidw | Powered by <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+
+    </div>
+</body>
+
+</html>
